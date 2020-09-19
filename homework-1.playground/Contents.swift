@@ -7,9 +7,6 @@ import Foundation
  натуральное число N и выводит на экран все автоморфные числа, не превосходящие N.
  */
 
-    
-let N = 500
-
 func getNumbersCount(number: Int) -> Int {
     var result = number
     var count = 0
@@ -35,7 +32,9 @@ func quickPow(_ number: Int, _ power: Int) -> Int {
     return result
 }
 
-for number in 1..<500 {
+let N = 500
+
+for number in 1..<N {
     let sqr = quickPow(number, 2)
     let divider = quickPow(10, getNumbersCount(number: number))
     
