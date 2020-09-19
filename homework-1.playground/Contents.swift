@@ -10,41 +10,36 @@ import Foundation
     
 let N = 500
 
-
 func getNumbersCount(number: Int) -> Int {
-    var num = number
+    var result = number
     var count = 0
-    while num != 0 {
-        let digit = abs(num % 10)
-        if digit != 0 && number % digit == 0 {
+    while result > 0 {
+        let digit = abs(result % 10)
+        if digit != 0 {
             count += 1
         }
-        num = num / 10
+        result = result / 10
     }
     return count
 }
 
 func quickPow(_ number: Int, _ power: Int) -> Int {
     var result = 1
-    var p = power
-    var n = number
-    if (p % 2) == 0 {
-        p -= 1
-        result *= n
-    } else {
-        n *= n
-        p /= 2
+    if (power != 0) {
+        if (power % 2) == 0 {
+            result = quickPow(number * number, power / 2);
+        } else {
+            result = number * quickPow(number * number, power / 2)
+        }
     }
-    return n
+    return result
 }
 
-for number in 0..<1000 {
-    //var num = number
+for number in 1..<500 {
     let sqr = quickPow(number, 2)
-    let divider = quickPow(10, getNumbersCount(number: N))
+    let divider = quickPow(10, getNumbersCount(number: number))
     
     if (number == (Int(sqr) % Int(divider))) {
         print("\(number) - Автоморфное число")
-        print(divider)
     }
 }
